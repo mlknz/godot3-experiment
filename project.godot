@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="Cyberwhale"
+run/main_scene="res://src/menu/main_menu.tscn"
+config/icon="res://assets/images/icon.png"
+
+[autoload]
+
+global="*res://src/global.gd"
+
+[rendering]
+
+quality/directional_shadow/size=4098
+quality/shadow_atlas/size=4098
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
+quality/depth_prepass/enable=false
+quality/subsurface_scattering/quality=0
+quality/subsurface_scattering/weight_samples=false
+quality/voxel_cone_tracing/high_quality=false
+quality/depth/hdr=false
+environment/default_environment="res://default_env.tres"
