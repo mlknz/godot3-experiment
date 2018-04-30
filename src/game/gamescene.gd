@@ -28,6 +28,8 @@ func _ready():
 	inst.multimesh.set_instance_transform(0, Transform().translated(Vector3(0, 2, 0)))
 	inst.multimesh.set_instance_transform(1, Transform().translated(Vector3(0, -2, 0)))
 	add_child(inst) # batched
+	
+	#self.material.set_shader_param("my_value", 0.5)
 
 	pass
 

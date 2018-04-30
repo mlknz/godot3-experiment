@@ -13,11 +13,4 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if Input.is_action_pressed("ui_right"):
-		translation.x += 1
-	if Input.is_action_pressed("ui_left"):
-		translation.x -= 1
-	if Input.is_action_pressed("ui_up"):
-		translation.z -= 1
-	if Input.is_action_pressed("ui_down"):
-		translation.z += 1
+	
