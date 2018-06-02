@@ -29,7 +29,7 @@ shader = SubResource( 2 )
 
 extents = Vector3( 10, 1, 10 )
 
-[node name="Spatial" type="Spatial" index="0"]
+[node name="Spatial" type="Spatial"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -53,7 +53,7 @@ _sections_unfolded = [ "Transform", "Visibility", "material" ]
 
 [node name="StaticBody" type="StaticBody" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [sub_resource type="PrismMesh" id=1]
 
@@ -8,7 +8,11 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Spatial" type="Spatial" index="0"]
+[sub_resource type="BoxShape" id=2]
+
+extents = Vector3( 0.5, 0.5, 1 )
+
+[node name="Spatial" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
@@ -26,5 +30,21 @@ mesh = SubResource( 1 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody" type="StaticBody" parent="." index="1"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
+
+shape = SubResource( 2 )
+disabled = false
 
 

@@ -19,14 +19,14 @@ func _ready():
 	
 	for i in levelData["obstacles"]["p"]:
 		var inst = obstacle.instance()
-		inst.translate(Vector3(2 * i, 0, -4))
+		inst.translate(Vector3(2 * i - 2.6, 0, -3))
 		add_child(inst) # not batched
 
 	var instObstacle = ResourceLoader.load("res://src/game/env/instanced_obstacle.tscn")
 	var inst = instObstacle.instance()
 	inst.multimesh.instance_count = 2;
-	inst.multimesh.set_instance_transform(0, Transform().translated(Vector3(0, 2, 0)))
-	inst.multimesh.set_instance_transform(1, Transform().translated(Vector3(0, -2, 0)))
+	inst.multimesh.set_instance_transform(0, Transform().translated(Vector3(0, 2, -14)))
+	inst.multimesh.set_instance_transform(1, Transform().translated(Vector3(4, 2, -14)))
 	add_child(inst) # batched
 	
 	#self.material.set_shader_param("my_value", 0.5)

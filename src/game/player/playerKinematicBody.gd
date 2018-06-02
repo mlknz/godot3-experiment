@@ -3,7 +3,6 @@ extends KinematicBody
 var velocity = Vector3(0, 0, 0)
 var g = 9.8
 
-
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -35,3 +34,10 @@ func _physics_process(delta):
 	# print(is_on_floor(), " ",is_on_wall())
 	# move_and_collide(velocity * delta)
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0)) # todo: plane collision shape is broken
+	
+	var space_state = get_world().direct_space_state
+	var result = space_state.intersect_ray(translation, translation + Vector3(0, -8, 0))
+	var hitDist = -1;
+	if result:
+		hitDist = translation.distance_to(result.position)
+	#print(hitDist)

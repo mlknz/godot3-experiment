@@ -16,7 +16,7 @@ mesh = SubResource( 1 )
 transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 color_array = PoolColorArray( 0, 0, 0, 1 )
 
-[node name="MultiMeshInstance" type="MultiMeshInstance"]
+[node name="MultiMeshInstance" type="MultiMeshInstance" index="0"]
 
 layers = 1
 material_override = null

@@ -4,14 +4,15 @@
 [ext_resource path="res://src/game/player/playerKinematicBody.gd" type="Script" id=2]
 [ext_resource path="res://src/game/player/carMesh.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="BoxShape" id=1]
 
-radius = 1.0
-height = 1.0
+extents = Vector3( 0.4, 0.17, 0.8 )
 
 [node name="Spatial" type="Spatial"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="KinematicBody" type="KinematicBody" parent="." index="0"]
 
@@ -27,10 +28,11 @@ axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 2 )
-_sections_unfolded = [ "Collision", "collision" ]
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="0"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0870445, -0.137904 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
