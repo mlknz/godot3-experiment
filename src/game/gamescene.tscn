@@ -18,6 +18,7 @@ void vertex() {
 
 void fragment() {
 	ALBEDO = vec3(abs(sin(TIME)) * UV.x, abs(cos(TIME)) * UV.y, 0.0);
+	ALBEDO = vec3(0.2, 0.2, 0.0);
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -29,14 +30,14 @@ shader = SubResource( 2 )
 
 extents = Vector3( 10, 1, 10 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Spatial" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MyPlane" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -3, 0 )
+transform = Transform( 9.87541, 0, 0, 0, 0.987541, 0, 0, 0, 9.87541, 0, -3, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
