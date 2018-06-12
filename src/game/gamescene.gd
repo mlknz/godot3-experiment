@@ -30,8 +30,19 @@ func _ready():
 	add_child(inst) # batched
 	
 	#self.material.set_shader_param("my_value", 0.5)
-
+	
+	get_node("ResetButton").connect("pressed", self, "_on_reset_button_pressed")
+	get_node("ExitButton").connect("pressed", self, "_on_exit_button_pressed")
 	pass
+
+func _on_reset_button_pressed():
+	print("change scene")
+	get_node("/root/global").goto_scene("res://src/game/gamescene.tscn")
+
+func _on_exit_button_pressed():
+	print("change scene")
+	get_node("/root/global").goto_scene("res://src/menu/main_menu.tscn")
+
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

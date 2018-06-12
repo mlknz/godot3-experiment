@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/game/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/game/player/playerRigidBody.gd" type="Script" id=2]
 [ext_resource path="res://src/game/player/carMesh.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/game/player/Camera.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -57,7 +58,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera" type="Camera" parent="RigidBody" index="2"]
 
-transform = Transform( 1, 0, 0, 0, 0.99291, 0.118863, 0, -0.118863, 0.99291, 0, 0.662611, 3.14357 )
+transform = Transform( 1, 0, 0, 0, 0.992911, 0.118863, 0, -0.118863, 0.992911, 0, 0.662611, 3.14357 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -70,5 +71,7 @@ fov = 70.0
 size = 1.0
 near = 0.05
 far = 100.0
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 
