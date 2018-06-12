@@ -3,11 +3,13 @@ extends RigidBody
 var velocity = Vector3(0, 0, 0)
 var g = 9.8
 
-var thrustSpots = [Vector3(-0.5, 0, 0.5), Vector3(0.5, 0, 0.5), Vector3(-0.5, 0, -0.5), Vector3(0.5, 0, -0.5)]
-var thrustOrientations = [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)] # unused
+var thrustSpots = []
+var thrustOrientations = [] # unused
 var thrustHitDistances = [0, 0, 0, 0]
 
 func _ready():
+	var s = get_node("CollisionShape").shape.extents
+	thrustSpots = [Vector3(-s.x, 0, s.z), Vector3(s.x, 0, s.z), Vector3(-s.x, 0, -s.z), Vector3(s.x, 0, -s.z)]
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass
@@ -20,15 +22,15 @@ func _ready():
 func _physics_process(delta):
 	var spaceState = get_world().direct_space_state
 
-	for i in range(thrustSpots.size()):	
-		var result = spaceState.intersect_ray(translation + thrustSpots[i]
-				, translation + thrustSpots[i] - 8 * global_transform.basis.y)
+	for i in range(thrustSpots.size()):
+		var tr = translation + thrustSpots[i]
+		var result = spaceState.intersect_ray(tr, tr - 8 * global_transform.basis.y, [self], collision_mask)
 		thrustHitDistances[i] = translation.distance_to(result.position) if result else 0
 		
 		# draft broken logic
-		var acc = max((1.0 - thrustHitDistances[i]), 0.0)
+		var acc = max((0.5 - thrustHitDistances[i]), 0.0)
 		acc = acc * delta * g
-		apply_impulse(thrustSpots[i], Vector3(0, acc, 0))
+		apply_impulse(thrustSpots[i], acc * global_transform.basis.y)
 
 	var controls = Vector3(0, 0, 0)
 	if Input.is_action_pressed("ui_right"):

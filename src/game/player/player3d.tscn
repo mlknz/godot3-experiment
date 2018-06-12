@@ -10,7 +10,7 @@ extents = Vector3( 0.4, 0.17, 0.8 )
 
 [node name="Spatial" type="Spatial" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95316, 2 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -57,7 +57,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera" type="Camera" parent="RigidBody" index="2"]
 
-transform = Transform( 1, 0, 0, 0, 0.909544, 0.415607, 0, -0.415607, 0.909544, 0, 1.8471, 3.0864 )
+transform = Transform( 1, 0, 0, 0, 0.99291, 0.118863, 0, -0.118863, 0.99291, 0, 0.662611, 3.14357 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null

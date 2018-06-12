@@ -19,7 +19,7 @@ func _ready():
 	
 	for i in levelData["obstacles"]["p"]:
 		var inst = obstacle.instance()
-		inst.translate(Vector3(2 * i - 2.6, 0, -3))
+		inst.translate(Vector3(2 * i - 2.6, -0.5, -3))
 		add_child(inst) # not batched
 
 	var instObstacle = ResourceLoader.load("res://src/game/env/instanced_obstacle.tscn")
