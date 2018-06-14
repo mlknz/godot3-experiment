@@ -8,10 +8,7 @@ path.etc2="res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc2.ste
 [deps]
 
 source_file="res://assets/car_color.png"
-source_md5="87c73fbfb115c79a56153926a2f8b0e8"
-
 dest_files=[ "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.s3tc.stex", "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc2.stex" ]
-dest_md5="a6b2b8db00c88ef91e567381c0dd3ad5"
 
 [params]
 

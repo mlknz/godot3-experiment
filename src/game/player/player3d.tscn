@@ -41,8 +41,9 @@ axis_lock_angular_z = false
 linear_velocity = Vector3( 0, 0, 0 )
 linear_damp = -1.0
 angular_velocity = Vector3( 0, 0, 0 )
-angular_damp = -1.0
+angular_damp = 0.0
 script = ExtResource( 2 )
+_sections_unfolded = [ "Angular" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="0"]
 
@@ -56,7 +57,7 @@ _sections_unfolded = [ "Transform" ]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.580005 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Camera" type="Camera" parent="RigidBody" index="2"]
+[node name="Camera" type="Camera" parent="." index="1"]
 
 transform = Transform( 1, 0, 0, 0, 0.992911, 0.118863, 0, -0.118863, 0.992911, 0, 0.662611, 3.14357 )
 keep_aspect = 1

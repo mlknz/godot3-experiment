@@ -7,10 +7,7 @@ path="res://.import/car.dae-be61a9359ca8b23badaded97e000d88a.scn"
 [deps]
 
 source_file="res://assets/car.dae"
-source_md5="94d25221d0a98ae23166a92f5182fafc"
-
 dest_files=[ "res://.import/car.dae-be61a9359ca8b23badaded97e000d88a.scn" ]
-dest_md5="689c79223484c37a3ad8e53947fe3539"
 
 [params]
 
