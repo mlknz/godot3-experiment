@@ -11,7 +11,6 @@ extents = Vector3( 0.4, 0.17, 0.8 )
 
 [node name="Spatial" type="Spatial" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95316, 2 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -43,11 +42,10 @@ linear_damp = -1.0
 angular_velocity = Vector3( 0, 0, 0 )
 angular_damp = 0.0
 script = ExtResource( 2 )
-_sections_unfolded = [ "Angular" ]
+_sections_unfolded = [ "Angular", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0870445, -0.137904 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
