@@ -16,7 +16,7 @@ func _ready():
 	var y = -s.y + 0.05 # offset prevents stucking in floor
 	thrustSpots = [Vector3(-s.x, y, s.z), Vector3(s.x, y, s.z), Vector3(-s.x, y, -s.z), Vector3(s.x, y, -s.z)]
 	
-	angular_damp = 0.7 # probably we need custom damp
+	angular_damp = 0.7
 	linear_damp = 0.7
 	pass
 
@@ -41,6 +41,7 @@ func _physics_process(delta):
 	var rotateLeft = 0
 	var forward = 0
 	var leftStrafe = 0
+
 	if Input.is_action_pressed("ui_right"):
 		rotateLeft = - 0.8 * delta * mass
 	if Input.is_action_pressed("ui_left"):
@@ -57,6 +58,7 @@ func _physics_process(delta):
 		thrusterStrength += delta
 	if Input.is_action_pressed("Key_S"):
 		thrusterStrength -= delta
+	#if Input.is_action_pressed("ui_accept"):
 	
 	apply_impulse(Vector3(0, 0, 0), global_transform.basis.z * forward)
 	apply_impulse(Vector3(0, 0, 0), global_transform.basis.x * leftStrafe)

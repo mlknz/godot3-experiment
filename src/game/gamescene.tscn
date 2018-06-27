@@ -28,16 +28,16 @@ shader = SubResource( 2 )
 
 [sub_resource type="BoxShape" id=4]
 
-extents = Vector3( 10, 1, 10 )
+extents = Vector3( 30, 1, 30 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Spatial" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MyPlane" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 9.87541, 0, 0, 0, 0.987541, 0, 0, 0, 9.87541, 0, -1, 0 )
+transform = Transform( 30, 0, 0, 0, 0.987541, 0, 0, 0, 30, 0, -1, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1

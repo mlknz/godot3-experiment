@@ -2,9 +2,18 @@ extends Spatial
 
 func _ready():
 
-	var s = ResourceLoader.load("res://src/game/player/player3d.tscn")
-
-	add_child(s.instance())
+	var PlayerScene = ResourceLoader.load("res://src/game/player/player.tscn")
+	var player = PlayerScene.instance()
+	add_child(player)
+	
+	var playerDebugInfo = Spatial.new()
+	playerDebugInfo.set_script(
+			ResourceLoader.load("res://src/game/player/debug/physicsDebugInfo.gd"))
+	#player.add_child(playerDebugInfo)
+	
+	var FollowCameraScene = ResourceLoader.load("res://src/game/camera/FollowCamera.tscn")
+	var camera = FollowCameraScene.instance()
+	player.add_child(camera)
 	
 	var file = File.new()
 	file.open("res://assets/levels/level.json", file.READ)
