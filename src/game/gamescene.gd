@@ -1,22 +1,30 @@
 extends Spatial
 
-func _ready():
+var isDebug = OS.is_debug_build()
+var player
+var camera
 
-	var PlayerScene = ResourceLoader.load("res://src/game/player/player.tscn")
-	var player = PlayerScene.instance()
+func _ready():
+	_add_player()
+	_add_env("res://assets/levels/level.json")
+	_add_gui()
+
+func _add_player():
+	player = ResourceLoader.load("res://src/game/player/player.tscn").instance()
 	add_child(player)
 	
 	var playerDebugInfo = Spatial.new()
 	playerDebugInfo.set_script(
 			ResourceLoader.load("res://src/game/player/debug/physicsDebugInfo.gd"))
-	#player.add_child(playerDebugInfo)
+	#if isDebug:
+	#	player.add_child(playerDebugInfo)
 	
-	var FollowCameraScene = ResourceLoader.load("res://src/game/camera/FollowCamera.tscn")
-	var camera = FollowCameraScene.instance()
-	player.add_child(camera)
-	
+	camera = Camera.new()
+	add_child(camera)
+
+func _add_env(levelName):
 	var file = File.new()
-	file.open("res://assets/levels/level.json", file.READ)
+	file.open(levelName, file.READ)
 	var text = file.get_as_text()
 	
 	var levelData = parse_json(text)
@@ -39,10 +47,10 @@ func _ready():
 	add_child(inst) # batched
 	
 	#self.material.set_shader_param("my_value", 0.5)
-	
+
+func _add_gui():
 	get_node("ResetButton").connect("pressed", self, "_on_reset_button_pressed")
 	get_node("ExitButton").connect("pressed", self, "_on_exit_button_pressed")
-	pass
 
 func _on_reset_button_pressed():
 	print("change scene")
@@ -53,7 +61,11 @@ func _on_exit_button_pressed():
 	get_node("/root/global").goto_scene("res://src/menu/main_menu.tscn")
 
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	var playerPos = player.global_transform.origin
+	var z = player.global_transform.basis.z
+	z.y = 0
+	
+	camera.translation = playerPos + Vector3(0, 2, 0) + z * 4
+	camera.look_at(playerPos - z * 5, Vector3(0, 1, 0))
+	pass
