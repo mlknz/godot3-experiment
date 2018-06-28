@@ -47,11 +47,21 @@ func _add_env(levelName):
 	add_child(inst) # batched
 	
 	#self.material.set_shader_param("my_value", 0.5)
+	
+	var finishArea = ResourceLoader.load("res://src/game/env/FinishArea.tscn").instance()
+	finishArea.translate(Vector3(-5, 0, -5))
+	finishArea.connect("body_entered", self, "_on_finish_area_body_entered")
+	add_child(finishArea)
 
 func _add_gui():
 	get_node("ResetButton").connect("pressed", self, "_on_reset_button_pressed")
 	get_node("ExitButton").connect("pressed", self, "_on_exit_button_pressed")
 
+func _on_finish_area_body_entered(body):
+	if body.get_instance_id() == player.get_instance_id():
+		print("you win")
+		_on_exit_button_pressed()
+	
 func _on_reset_button_pressed():
 	print("change scene")
 	get_node("/root/global").goto_scene("res://src/game/gamescene.tscn")
