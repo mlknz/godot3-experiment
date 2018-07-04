@@ -52,6 +52,11 @@ func _add_env(levelName):
 	finishArea.translate(Vector3(-5, 0, -5))
 	finishArea.connect("body_entered", self, "_on_finish_area_body_entered")
 	add_child(finishArea)
+	
+	var damageArea = ResourceLoader.load("res://src/game/env/DamageArea.tscn").instance()
+	damageArea.translate(Vector3(-2, 0, -7))
+	damageArea.connect("body_entered", self, "_on_damage_area_body_entered")
+	add_child(damageArea)
 
 func _add_gui():
 	get_node("ResetButton").connect("pressed", self, "_on_reset_button_pressed")
@@ -59,8 +64,18 @@ func _add_gui():
 
 func _on_finish_area_body_entered(body):
 	if body.get_instance_id() == player.get_instance_id():
-		print("you win")
-		_on_exit_button_pressed()
+		_show_result_popup(true)
+	
+func _on_damage_area_body_entered(body):
+	if body.get_instance_id() == player.get_instance_id():
+		_show_result_popup(false)
+
+func _show_result_popup(isWin):
+	var popup = ResourceLoader.load("res://src/menu/popups/GameResult.tscn").instance()
+	add_child(popup)
+	popup.popup_centered()
+	var title = popup.get_node("TitleLabel")
+	title.set_text("You win" if isWin else "Game over")
 	
 func _on_reset_button_pressed():
 	print("change scene")
@@ -69,7 +84,6 @@ func _on_reset_button_pressed():
 func _on_exit_button_pressed():
 	print("change scene")
 	get_node("/root/global").goto_scene("res://src/menu/main_menu.tscn")
-
 
 func _process(delta):
 	var playerPos = player.global_transform.origin
