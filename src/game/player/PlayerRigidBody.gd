@@ -14,6 +14,8 @@ var thrusterDist = 5
 
 var forwardTouch = null;
 var rotateTouch = null;
+var moveUpTouch = null;
+var moveDownTouch = null;
 var forwardTouchDeltaX = 0;
 var forwardTouchDeltaY = 0;
 var rotateTouchDeltaX = 0;
@@ -52,6 +54,10 @@ func _physics_process(delta):
 	var rotateLeft = rotateTouchDeltaX * delta * mass * 0.02
 	var forward = forwardTouchDeltaY * delta * mass * 0.1
 	var leftStrafe = forwardTouchDeltaX * delta * mass * 0.04
+	if moveUpTouch:
+		thrusterStrength -= delta
+	if moveDownTouch:
+		thrusterStrength += delta
 
 	if Input.is_action_pressed("ui_right"):
 		rotateLeft = - 0.8 * delta * mass
@@ -87,7 +93,15 @@ func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			var isRightHalf = event.get_position().x > get_viewport().get_visible_rect().size.x * 0.5
-			if !forwardTouch && !isRightHalf:
+			var isUpperPart = event.get_position().y > get_viewport().get_visible_rect().size.y * 0.9
+			var isDownPart = event.get_position().y < get_viewport().get_visible_rect().size.y * 0.1
+			if !isRightHalf && isUpperPart:
+				if !moveUpTouch:
+					moveUpTouch = event
+			elif !isRightHalf && isDownPart:
+				if !moveDownTouch:
+					moveDownTouch = event
+			elif !forwardTouch && !isRightHalf:
 				forwardTouch = event
 				forwardTouchDeltaX = 0
 				forwardTouchDeltaY = 0
@@ -102,6 +116,10 @@ func _unhandled_input(event):
 			if rotateTouch && event.get_index() == rotateTouch.get_index():
 				rotateTouch = null
 				rotateTouchDeltaX = 0
+			if moveUpTouch && event.get_index() == moveUpTouch.get_index():
+				moveUpTouch = null
+			if moveDownTouch && event.get_index() == moveDownTouch.get_index():
+				moveDownTouch = null
 	if event is InputEventScreenDrag:
 		if forwardTouch && event.get_index() == forwardTouch.get_index():
 			forwardTouchDeltaY = event.get_position().y - forwardTouch.get_position().y

@@ -6,7 +6,7 @@ var camera
 
 func _ready():
 	_add_player()
-	_add_env("res://assets/levels/level.json")
+	_add_env("res://assets/levels/level.tres")
 	var finishArea = ResourceLoader.load("res://src/game/env/FinishArea.tscn").instance()
 	finishArea.translate(Vector3(-5, 0, -5))
 	finishArea.connect("body_entered", self, "_on_finish_area_body_entered")
@@ -44,7 +44,7 @@ func _add_env(levelName):
 	
 	for i in levelData["obstacles"]["p"]:
 		var inst = obstacle.instance()
-		inst.translate(Vector3(2 * i - 2.6, -1.0, -3))
+		inst.translate(Vector3(2 * i - 2.6, -1.35 + i * 0.05, -3))
 		add_child(inst) # not batched
 
 	
