@@ -30,5 +30,5 @@ func _process(delta):
 		debugSticks[i].translation = playerBody.thrustSpots[i] + Vector3(0, -playerBody.thrustHitDistances[i] *0.5, 0)
 	pass
 
-func _physics_process(delta):
-	
+#func _physics_process(delta):
+#

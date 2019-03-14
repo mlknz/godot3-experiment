@@ -4,17 +4,23 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.s3tc.stex"
 path.etc2="res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc2.stex"
+path.etc="res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2", "etc" ],
+"vram_texture": true
+}
 
 [deps]
 
 source_file="res://assets/car_color.png"
-dest_files=[ "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.s3tc.stex", "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc2.stex" ]
+dest_files=[ "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.s3tc.stex", "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc2.stex", "res://.import/car_color.png-e09240593d91b2699c3cda59df1b8f75.etc.stex" ]
 
 [params]
 
 compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
 flags/filter=true
@@ -24,6 +30,7 @@ flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

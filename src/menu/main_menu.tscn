@@ -3,91 +3,32 @@
 [ext_resource path="res://src/menu/fps.gd" type="Script" id=1]
 [ext_resource path="res://src/menu/play_button.gd" type="Script" id=2]
 
-[node name="Label" type="Label" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label" type="Label"]
 margin_left = 42.0
 margin_top = 29.0
 margin_right = 82.0
 margin_bottom = 43.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "sec"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 script = ExtResource( 1 )
-Game = null
 
-[node name="Panel" type="Panel" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Panel" type="Panel" parent="."]
 margin_left = 300.0
 margin_top = 212.0
 margin_right = 823.0
 margin_bottom = 432.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 2 )
 
-[node name="TitleText" type="Label" parent="Panel" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="TitleText" type="Label" parent="Panel"]
 margin_left = 81.0
 margin_top = 32.0
 margin_right = 382.0
 margin_bottom = 70.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Godot3 videogame"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="PlayButton" type="Button" parent="Panel" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="PlayButton" type="Button" parent="Panel"]
 margin_left = 93.0
 margin_top = 86.0
 margin_right = 256.0
 margin_bottom = 141.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Play"
-flat = false
-align = 1
-
 

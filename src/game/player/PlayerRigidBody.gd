@@ -1,5 +1,7 @@
 extends RigidBody
 
+var gameOver = false
+
 var velocity = Vector3(0, 0, 0)
 var g = 9.8
 var shapeExtents
@@ -9,6 +11,15 @@ var thrustOrientations = [] # unused
 var thrustHitDistances = [0, 0, 0, 0]
 var thrusterStrength = 3
 var thrusterDist = 5
+
+var forwardTouch = null;
+var rotateTouch = null;
+var forwardTouchDeltaX = 0;
+var forwardTouchDeltaY = 0;
+var rotateTouchDeltaX = 0;
+
+func game_over():
+	gameOver = true
 
 func _ready():
 	shapeExtents = get_node("CollisionShape").shape.extents
@@ -38,9 +49,9 @@ func _physics_process(delta):
 		acc = pow(acc, 1) * delta * thrusterStrength * mass
 		apply_impulse(tr - global_transform.origin, acc * up) # find howto localTransform * Vec3 here :(
 
-	var rotateLeft = 0
-	var forward = 0
-	var leftStrafe = 0
+	var rotateLeft = rotateTouchDeltaX * delta * mass * 0.02
+	var forward = forwardTouchDeltaY * delta * mass * 0.1
+	var leftStrafe = forwardTouchDeltaX * delta * mass * 0.04
 
 	if Input.is_action_pressed("ui_right"):
 		rotateLeft = - 0.8 * delta * mass
@@ -58,7 +69,6 @@ func _physics_process(delta):
 		thrusterStrength += delta
 	if Input.is_action_pressed("Key_S"):
 		thrusterStrength -= delta
-	#if Input.is_action_pressed("ui_accept"):
 	
 	apply_impulse(Vector3(0, 0, 0), global_transform.basis.z * forward)
 	apply_impulse(Vector3(0, 0, 0), global_transform.basis.x * leftStrafe)
@@ -70,3 +80,31 @@ func _integrate_forces(state):
 	#" ", state.angular_velocity.z)
 	#print(state.total_angular_damp)
 	pass
+	
+func _unhandled_input(event):
+	if gameOver:
+		return
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			var isRightHalf = event.get_position().x > get_viewport().get_visible_rect().size.x * 0.5
+			if !forwardTouch && !isRightHalf:
+				forwardTouch = event
+				forwardTouchDeltaX = 0
+				forwardTouchDeltaY = 0
+			if !rotateTouch && isRightHalf:
+				rotateTouch = event
+				rotateTouchDeltaX = 0
+		else:
+			if forwardTouch && event.get_index() == forwardTouch.get_index():
+				forwardTouch = null
+				forwardTouchDeltaX = 0
+				forwardTouchDeltaY = 0
+			if rotateTouch && event.get_index() == rotateTouch.get_index():
+				rotateTouch = null
+				rotateTouchDeltaX = 0
+	if event is InputEventScreenDrag:
+		if forwardTouch && event.get_index() == forwardTouch.get_index():
+			forwardTouchDeltaY = event.get_position().y - forwardTouch.get_position().y
+			forwardTouchDeltaX = event.get_position().x - forwardTouch.get_position().x
+		if rotateTouch && event.get_index() == rotateTouch.get_index():
+			rotateTouchDeltaX = - event.get_position().x + rotateTouch.get_position().x

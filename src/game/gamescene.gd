@@ -7,6 +7,14 @@ var camera
 func _ready():
 	_add_player()
 	_add_env("res://assets/levels/level.json")
+	var finishArea = ResourceLoader.load("res://src/game/env/FinishArea.tscn").instance()
+	finishArea.translate(Vector3(-5, 0, -5))
+	finishArea.connect("body_entered", self, "_on_finish_area_body_entered")
+	add_child(finishArea)
+	var damageArea = ResourceLoader.load("res://src/game/env/DamageArea.tscn").instance()
+	damageArea.translate(Vector3(-2, 0, -7))
+	damageArea.connect("body_entered", self, "_on_damage_area_body_entered")
+	add_child(damageArea)
 	_add_gui()
 
 func _add_player():
@@ -39,12 +47,6 @@ func _add_env(levelName):
 		inst.translate(Vector3(2 * i - 2.6, -1.0, -3))
 		add_child(inst) # not batched
 
-	var instObstacle = ResourceLoader.load("res://src/game/env/instanced_obstacle.tscn")
-	var inst = instObstacle.instance()
-	inst.multimesh.instance_count = 2;
-	inst.multimesh.set_instance_transform(0, Transform().translated(Vector3(0, 2, -14)))
-	inst.multimesh.set_instance_transform(1, Transform().translated(Vector3(4, 2, -14)))
-	add_child(inst) # batched
 	
 	#self.material.set_shader_param("my_value", 0.5)
 	
@@ -64,10 +66,12 @@ func _add_gui():
 
 func _on_finish_area_body_entered(body):
 	if body.get_instance_id() == player.get_instance_id():
+		player.game_over()
 		_show_result_popup(true)
 	
 func _on_damage_area_body_entered(body):
 	if body.get_instance_id() == player.get_instance_id():
+		player.game_over()
 		_show_result_popup(false)
 
 func _show_result_popup(isWin):
@@ -92,4 +96,3 @@ func _process(delta):
 	
 	camera.translation = playerPos + Vector3(0, 2, 0) + z * 4
 	camera.look_at(playerPos - z * 5, Vector3(0, 1, 0))
-	pass
